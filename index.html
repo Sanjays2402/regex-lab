@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regex Lab — live regex tester</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
+</head>
+<body>
+<header>
+  <div class="brand">🔍 <strong>Regex Lab</strong></div>
+  <div class="spacer"></div>
+  <button id="save-btn" class="btn">Save</button>
+  <button id="share-btn" class="btn">Share link</button>
+</header>
+<main>
+  <aside class="sidebar">
+    <h3>Saved</h3>
+    <div id="saved-list" class="saved-list"></div>
+    <h3>Cheat sheet</h3>
+    <div class="cheat">
+      <div class="row"><code>.</code><span>any char (except newline)</span></div>
+      <div class="row"><code>\d</code><span>digit [0-9]</span></div>
+      <div class="row"><code>\w</code><span>word char [A-Za-z0-9_]</span></div>
+      <div class="row"><code>\s</code><span>whitespace</span></div>
+      <div class="row"><code>\b</code><span>word boundary</span></div>
+      <div class="row"><code>^ $</code><span>line start / end</span></div>
+      <div class="row"><code>a*</code><span>0+ of a</span></div>
+      <div class="row"><code>a+</code><span>1+ of a</span></div>
+      <div class="row"><code>a?</code><span>0 or 1 of a</span></div>
+      <div class="row"><code>a{n,m}</code><span>n to m of a</span></div>
+      <div class="row"><code>[abc]</code><span>any of a,b,c</span></div>
+      <div class="row"><code>[^abc]</code><span>not a,b,c</span></div>
+      <div class="row"><code>a|b</code><span>a or b</span></div>
+      <div class="row"><code>(…)</code><span>capture group</span></div>
+      <div class="row"><code>(?:…)</code><span>non-capturing</span></div>
+      <div class="row"><code>(?=…)</code><span>lookahead</span></div>
+      <div class="row"><code>(?!…)</code><span>negative lookahead</span></div>
+      <div class="row"><code>\1 \2</code><span>backreference</span></div>
+    </div>
+  </aside>
+  <div class="workspace">
+    <div class="row-top">
+      <div class="regex-input">
+        <span class="slash">/</span>
+        <input id="pattern" placeholder="your pattern" spellcheck="false" autocomplete="off">
+        <span class="slash">/</span>
+        <input id="flags" placeholder="flags" maxlength="7" value="gm" spellcheck="false">
+      </div>
+      <div id="error" class="error"></div>
+    </div>
+    <div class="presets">
+      <button class="preset" data-p="email"><span>Email</span></button>
+      <button class="preset" data-p="url"><span>URL</span></button>
+      <button class="preset" data-p="ipv4"><span>IPv4</span></button>
+      <button class="preset" data-p="phone"><span>Phone (US)</span></button>
+      <button class="preset" data-p="date"><span>Date ISO</span></button>
+      <button class="preset" data-p="hex"><span>Hex color</span></button>
+      <button class="preset" data-p="uuid"><span>UUID</span></button>
+      <button class="preset" data-p="word"><span>Words</span></button>
+    </div>
+    <div class="sections">
+      <div class="section">
+        <div class="section-head">
+          <h3>Test string</h3>
+          <span id="match-count" class="match-count">0 matches</span>
+        </div>
+        <div class="text-wrap">
+          <div id="highlight" class="highlight"></div>
+          <textarea id="input" spellcheck="false" placeholder="Paste text here to test against your regex…"></textarea>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-head">
+          <h3>Matches</h3>
+          <div class="tabs">
+            <button class="tab active" data-tab="list">List</button>
+            <button class="tab" data-tab="replace">Replace</button>
+          </div>
+        </div>
+        <div id="tab-list" class="tab-panel active">
+          <div id="matches" class="match-list"></div>
+        </div>
+        <div id="tab-replace" class="tab-panel">
+          <input id="replacement" placeholder="Replacement (use $1, $2… for groups)">
+          <pre id="replace-output" class="replace-output"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
